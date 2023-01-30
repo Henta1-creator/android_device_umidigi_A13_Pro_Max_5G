@@ -1,0 +1,6 @@
+persist.sys.usb.config=none
+ro.fota.app=5
+ro.fota.battery=30
+ro.fota.oem=hongxiangyuan6833_12.0
+ro.fota.platform=MTK6833_12.0
+ro.fota.type=phone

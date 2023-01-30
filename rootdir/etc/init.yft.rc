@@ -1,0 +1,75 @@
+# YFT common .rc configure
+
+# fingerprint
+import ${ro.vendor.rc}init.fingerprint.rc
+# YFT platform .rc configure
+import ${ro.vendor.rc}init.yft.platform.rc
+# YFT Bill add swap.rc configure
+import ${ro.vendor.rc}init.yftswap.rc
+
+on post-fs-data
+# YFT.chris lepton
+    mkdir /mnt/vendor/nvcfg/FLIR
+    chown system system /mnt/vendor/nvcfg/FLIR
+    chmod 0771 /mnt/vendor/nvcfg/FLIR
+    restorecon_recursive /mnt/vendor/nvcfg/FLIR
+
+on boot
+    chmod 0664 /sys/class/leds/red/brightness
+    chown system system /sys/class/leds/red/brightness
+    chmod 0664 /sys/class/leds/green/brightness
+    chown system system /sys/class/leds/green/brightness
+    chmod 0664 /sys/class/leds/blue/brightness
+    chown system system /sys/class/leds/blue/brightness
+
+# YFT.chris temperature sensor
+    chown system system /sys/bus/i2c/drivers/fm78100-sensor/chip_power
+    chmod 0777 /sys/bus/i2c/drivers/fm78100-sensor/chip_power
+    chown system system /sys/bus/i2c/drivers/fm78100-sensor/chip_enable
+    chmod 0777 /sys/bus/i2c/drivers/fm78100-sensor/chip_enable
+    chown system system /sys/bus/i2c/drivers/fm78100-sensor/chip_exist
+    chmod 0777 /sys/bus/i2c/drivers/fm78100-sensor/chip_exist
+    chown system system /sys/bus/i2c/drivers/fm78100-sensor/mems_temp
+    chmod 0777 /sys/bus/i2c/drivers/fm78100-sensor/mems_temp
+    chown system system /sys/bus/i2c/drivers/fm78100-sensor/ntc_temp
+    chmod 0777 /sys/bus/i2c/drivers/fm78100-sensor/ntc_temp
+    chown system system /sys/bus/i2c/drivers/fm78100-sensor/objs_temp
+    chmod 0777 /sys/bus/i2c/drivers/fm78100-sensor/objs_temp
+
+# flashlight
+    chmod 0777 sys/devices/virtual/flashlight_core/flashlight/flashlight_contrl
+    chown system radio sys/devices/virtual/flashlight_core/flashlight/flashlight_contrl
+
+# gloves mode
+    chmod 0777 /sys/devices/platform/11018000.spi4/spi_master/spi4/spi4.0/fts_glove_mode
+    chown system radio /sys/devices/platform/11018000.spi4/spi_master/spi4/spi4.0/fts_glove_mode
+    chmod 0777 /sys/devices/platform/11f00000.i2c0/i2c-0/0-0038/fts_glove_mode
+    chown system radio /sys/devices/platform/11f00000.i2c0/i2c-0/0-0038/fts_glove_mode
+    chmod 0777 /sys/devices/platform/11f00000.i2c0/i2c-0/0-0048/misc/glove_en
+    chown system radio /sys/devices/platform/11f00000.i2c0/i2c-0/0-0048/misc/glove_en
+    chmod 0777 /sys/devices/platform/11f00000.i2c0/i2c-0/0-0041/ilitek_glove_mode
+    chown system radio /sys/devices/platform/11f00000.i2c0/i2c-0/0-0041/ilitek_glove_mode
+# esim switch 
+    chmod 0777 /sys/devices/platform/yft_device/esim_switch
+    chown system system /sys/devices/platform/yft_device/esim_switch
+
+# yft liuyang add for smartpa calibration
+    chmod 0666 /sys/class/fs16xx/fsm_re25
+    chmod 0666 /sys/bus/i2c/drivers/speaker_amp/6-0034/dsp_re
+
+# YFT.chris lepton
+    chown system system /dev/lepton_drv
+    chmod 660 /dev/lepton_drv
+    
+# YFT.chris temperature sensor
+    chown system system /sys/devices/platform/yft_device/yft_fm_switch
+    chmod 0777 /sys/devices/platform/yft_device/yft_fm_switch   
+    
+    chown system system /sys/devices/platform/11d00000.i2c5/i2c-5/5-0034/mt6360_pmu_rgbled.4.auto/leds/mt6360_pmu_led4/brightness
+    chmod 0777 /sys/devices/platform/11d00000.i2c5/i2c-5/5-0034/mt6360_pmu_rgbled.4.auto/leds/mt6360_pmu_led4/brightness
+
+# yft add for data/anr/binderinfo copy fail
+    chmod 0666 /data/anr/binderinfo
+
+# yft Alistar add for Yft Night Vision Light Test
+    chmod 0666 /sys/devices/platform/11d01000.i2c7/i2c-7/7-0063/debug

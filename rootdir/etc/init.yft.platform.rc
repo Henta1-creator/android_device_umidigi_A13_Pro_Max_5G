@@ -1,0 +1,4 @@
+on boot
+# YFT.chris lepton
+    chown system system /dev/i2c-7
+    chmod 660 /dev/i2c-7
